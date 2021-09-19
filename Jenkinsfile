@@ -6,6 +6,7 @@ pipeline{
     {
       steps{
       echo 'Building th eapplication'
+       sh 'npm install npm'
       }
     }
     
