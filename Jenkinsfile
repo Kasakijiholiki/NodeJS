@@ -1,29 +1,25 @@
-pipeline{
- agent any
-  stages
-  {
-     stage("build")
-    {
-      steps{
-      echo 'Building th eapplication'
-       sh 'npm install npm'
-      }
+ile (Declarative Pipeline)
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh './gradlew build'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './gradlew check'
+            }
+        }
     }
-    
-    stage("test"){
-      steps{
-      echo 'Testing the application'
-      }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit 'build/reports/**/*.xml'
+        }
     }
-  
-    stage("deploy")
-    {
-      steps{
-      echo 'Deployinh the application'
-      }
-    
-    }
-    
-    
-  }
 }
+
