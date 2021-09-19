@@ -5,21 +5,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh './gradlew build'
+                sh 'apt install npm'
             }
         }
         stage('Test') {
             steps {
-                sh './gradlew check'
+                sh 'npm run test'
             }
         }
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-            junit 'build/reports/**/*.xml'
-        }
-    }
+   
 }
 
