@@ -1,20 +1,24 @@
-ile (Declarative Pipeline)
 
 pipeline {
     agent any
     stages {
         stage('Build') {
             steps {
-                sh 'apt install npm'
-            }
+                 sh 'npm start'
+                 sh 'rm -f test-report.xml'
+                 sh 'touch test-report.xml'             }
         }
-        stage('Test') {
-            steps {
+        stage('Test'){
+             steps{
                 sh 'npm run test'
-            }
+                echo 'I am going to test it now'
+             }
         }
-    }
-
-   
 }
-
+       post {
+       always {
+              junit 'test-report.xml'
+           }
+  }
+}
+//    
