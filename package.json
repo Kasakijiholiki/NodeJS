@@ -4,7 +4,7 @@
   "description": "",
   "main": "sum.js",
   "scripts": {
-    "start": "node test/sum.test.js",
+    "start": "node /test/sum.test.js",
     "test": "jest --collect-coverage"
   },
   "sonarlint.connectedMode.connections.sonarqube": [
