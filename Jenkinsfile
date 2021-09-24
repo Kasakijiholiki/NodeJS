@@ -1,5 +1,5 @@
 
-pipeline {
+/*pipeline {
     agent any
     stages {
         stage('Build') {
@@ -20,5 +20,16 @@ pipeline {
               junit 'test-report.xml'
            }
   }
+}*/
+
+node {
+  stage('SCM') {
+    checkout scm
+  }
+  stage('SonarQube Analysis') {
+    def scannerHome = tool 'SonarScanner';
+    withSonarQubeEnv() {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
 }
-//    
