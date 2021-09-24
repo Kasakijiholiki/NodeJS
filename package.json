@@ -5,7 +5,7 @@
   "main": "sum.js",
   "scripts": {
     "start": "node src/sum.js",
-    "test": "jest --collect-coverage"
+    "test": "jest"
   },
   "sonarlint.connectedMode.connections.sonarqube": [
     {
